@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <!-- React 및 ReactDOM CDN 추가 -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Babel 사용을 위한 CDN 추가 -->
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        /* 스타일 추가 */
+        .styled-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // React 컴포넌트 정의
+        const { useState } = React;
+
+        function App() {
+          // showAlert 상태와 해당 상태를 변경하는 함수를 useState 훅을 통해 생성
+          const [showAlert, setShowAlert] = useState(false);
+
+          // handleClick 함수 정의: 버튼 클릭 시 showAlert 상태를 토글하고, 2초 후에 다시 false로 변경하여 alert를 제거
+          const handleClick = () => {
+            // 버튼 클릭 시 showAlert 상태를 토글
+            setShowAlert(true);
+
+            // 2초 후에 showAlert 상태를 다시 false로 변경하여 alert를 제거
+            setTimeout(() => {
+              setShowAlert(false);
+            }, 2000);
+          };
+
+          // JSX를 사용하여 UI를 반환
+          return (
+            <div>
+              {/* 버튼 엘리먼트: 클릭 시 handleClick 함수 실행 */}
+              <button onClick={handleClick}>Click me</button>
+
+              {/* showAlert가 true일 때만 렌더링되는 조건부 렌더링 */}
+              {showAlert && (
+                <div className="styled-alert">
+                  버튼이 클릭되었습니다!
+                </div>
+              )}
+            </div>
+          );
+        }
+
+        // React 컴포넌트를 root 요소에 렌더링
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+
+</body>
+</html>
