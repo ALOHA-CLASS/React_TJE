@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- React와 ReactDOM을 불러오기 위한 CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel을 사용하기 위한 CDN -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <!-- React 컴포넌트를 렌더링할 컨테이너 -->
+    <div id="mydiv"></div>
+
+    <!-- Babel을 사용하여 JSX 코드를 자바스크립트로 트랜스파일하는 스크립트 -->
+    <script type="text/babel">
+      // React 함수 컴포넌트 정의
+      function Hello() {
+        return <h1>Hello World!</h1>;
+      }
+
+      // 렌더링할 컨테이너 요소 가져오기
+      const container = document.getElementById('mydiv');
+
+      // ReactDOM.createRoot를 사용하여 루트 생성
+      const root = ReactDOM.createRoot(container);
+
+      // Hello 컴포넌트를 루트에 렌더링
+      root.render(<Hello />);
+    </script>
+
+  </body>
+</html>
