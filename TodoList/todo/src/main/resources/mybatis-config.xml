@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 설정 -->
+	<settings>
+		<!-- 언더스코어 케이스인 컬럼을 카멜 케이스로 변환하는 설정  -->
+		<!-- board_no - boardNo -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- 타입 별칭 설정 -->
+	<typeAliases>
+		<!-- 패키지부터의 전체경로를 갖는 자바 타입을 축약해서 별칭으로 지정 -->
+		<!-- 
+		<typeAlias alias="Board"  type="com.joeun.board.dto.Board"/>
+	
+		 -->
+		 
+		<!-- 테이블과 매핑할 DTO가 있는 패키지 경로 지정 -->
+		<package name="com.joeun.todo.dto"/>
+	</typeAliases>	
+
+
+</configuration>

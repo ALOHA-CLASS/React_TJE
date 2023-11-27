@@ -11,11 +11,13 @@ const CardList = () => {
 
   return (
     <div>
-      <h2>Card List</h2>
-      {/* Card 컴포넌트에 데이터를 전달하면서 렌더링 */}
-      {cardData.map((card, index) => (
-        <Card key={index} title={card.title} content={card.content} />
-      ))}
+        <h1>Card List</h1>
+        {/* <Card key={0} title={cardData[0].title} content={cardData[0].content} ></Card> */}
+        {/* <Card key={1} title={cardData[1].title} content={cardData[1].content} ></Card> */}
+        {/* <Card key={2} title={cardData[2].title} content={cardData[2].content} ></Card> */}
+        {cardData.map((card, index) => {
+            return <Card key={index} title={card.title} content={card.content} />
+        })}
     </div>
   );
 };

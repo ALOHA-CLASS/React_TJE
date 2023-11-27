@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" --> 
+<mapper namespace="com.joeun.todo.mapper.TodoMapper">
+
+    <!-- 할일 목록 -->
+    <select id="list" resultType="Todo">
+        SELECT *
+        FROM todo
+        ORDER BY status ASC, no DESC
+    </select>
+
+    <!-- 할일 조회 -->
+    <select id="select" resultType="Todo">
+        SELECT *
+        FROM todo
+        WHERE no = #{no}
+    </select>
+
+    <!-- 할일 등록 -->
+    <insert id="insert">
+        INSERT INTO todo( name )
+        VALUES ( #{name} )
+    </insert>
+
+    <!-- 할일 수정 -->
+    <update id="update">
+        UPDATE todo
+           SET name = #{name}
+              ,status = #{status}
+              ,upd_date = now()
+        WHERE no = #{no}
+    </update>
+
+    <!-- 할일 삭제 -->
+    <delete id="delete">
+        DELETE FROM todo
+        WHERE no = #{no}
+    </delete>
+
+    <!-- last id -->
+    <select id="lastId" resultType="int">
+        select last_insert_id() id
+    </select>
+
+
+
+    <!-- 전체 할일 완료 -->
+    <update id="completeAll">
+        UPDATE todo
+           SET status = 1
+              ,upd_date = now()
+    </update>
+
+    <!-- 전체 할일 삭제 -->
+    <delete id="deleteAll">
+        DELETE FROM todo
+    </delete>
+
+
+</mapper>
