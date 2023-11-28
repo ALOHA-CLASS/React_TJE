@@ -1,35 +1,27 @@
 import React, { useState } from 'react'
 
-const ProductDetail = (props) => {
 
-    // ✅ state 추가
-    const [quantity, setQuantity] = useState(1)
+const ProductDetail = ({ product }) => {        // ✅ props ➡ { product } 👩‍🏫 객체 구조분해할당
 
-    // ✅ 객체 추가
-    const product = {
-        productId : 'p000001',
-        name : '베이직 폴라 니트',
-        price : 42000,
-        quantity : 1,
-        img: 'https://i.imgur.com/1vpSkbW.png',
-    }
+    // state 추가
+    const [quantity, setQuntity] = useState(1)
 
-    // ✅ 최종 가격 계산
+    // product{} ➡ App.js 이동
+
+    // 최종 가격 계산
     const totalPrice = product.price * quantity
 
-    // ✅ 이벤트 정의 - 증가
+    // 이벤트 정의 - 증가
     const onIncrease = () => {
         console.log(quantity);
-        setQuantity(quantity + 1)
+        setQuntity(quantity + 1)
     }
     
-    // ✅ 이벤트 정의 - 감소
+    // 이벤트 정의 - 감소
     const onDecrease = () => {
         console.log(quantity);
-        setQuantity(quantity - 1)
+        setQuntity(quantity - 1)
     }
-
-
   
     return (
         <div className='product-detail'>
