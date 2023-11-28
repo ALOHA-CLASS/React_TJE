@@ -1,0 +1,197 @@
+.container {
+  border: 2px solid cornflowerblue;
+  margin: 100px auto;
+  width: 480px;
+  min-height: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+  background-color: rgba(200,200,200,0.1);
+}
+
+.header {
+  text-align: center;
+  font-size: 20px;
+  color: royalblue;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px 10px 0;
+}
+
+.input {
+  width: 80%;
+  height: 30px;
+  background-color: transparent;
+}
+
+.input::placeholder {
+  color: royalblue;
+}
+
+.form .input {
+  border: none;
+  border-bottom: 1px solid royalblue;
+  padding-left: 12px;
+  font-size: 18px;
+}
+
+.form .input {
+  outline: none;
+  color: blue;
+}
+
+.form .btn {
+  width: 15%;
+}
+
+
+.btn {
+  width: 80px;
+  height: 40px;
+  padding: 0 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.btn:hover {
+  background-color: royalblue;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.active .btn:hover {
+  background-color: blue;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.todoList {
+  height: 500px;
+  overflow-y: auto;
+
+}
+
+ul { margin: 0; padding: 0; }
+
+.todoItem {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px 10px 0;
+  padding: 20px;
+  border: 2px solid cornflowerblue;
+  border-radius: 12px;
+  color: royalblue;
+  font-size: 18px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+}
+
+.todoItem.active {
+  background-color: royalblue;
+  color: white;
+}
+
+.todoItem .item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 체크박스 */
+.todoItem input {
+  display: none;
+}
+
+.todoItem label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px dashed royalblue;
+  border-radius: 50%;
+}
+
+.todoItem input:checked ~ label {
+  background-color: cornflowerblue;
+  border: 3px solid blue;
+}
+
+.todoItem input:checked ~ span {
+  text-decoration: line-through;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px 10px 0;
+}
+
+
+
+/* 스크롤바 */
+ ::-webkit-scrollbar-track
+ {
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+   background-color: transparent;
+   border-radius: 10px;
+ }
+ 
+ ::-webkit-scrollbar
+ {
+   width: 10px;
+   background-color: transparent;
+ }
+ 
+ ::-webkit-scrollbar-thumb
+ {
+   border-radius: 10px;
+   background-image: -webkit-gradient(linear,
+                      left bottom,
+                      left top,
+                      color-stop(0.44, rgb(122,153,217)),
+                      color-stop(0.72, rgb(73,125,189)),
+                      color-stop(0.86, rgb(28,58,148)));
+ }
+ 
+
+
+ /* 배경 */
+ body {
+	background: linear-gradient(
+		-45deg,
+		#ffffff,
+		#ffe4e9,
+		#fcc8e2,
+		#f6baed,
+		#efb0ff,
+		#d3a2ff,
+		#8eb8ff,
+		#91efff,
+		#d5f9ff
+	);
+	background-size: 400% 400%;
+	animation: gradient 9s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

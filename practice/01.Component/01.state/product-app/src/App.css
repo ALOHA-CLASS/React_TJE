@@ -1,0 +1,100 @@
+.txt-pt {
+  color: salmon;
+  font-weight: bold;
+}
+.line-lg {
+  display: block;
+  border-bottom: 2px solid lightgray;
+}
+
+.product-detail {
+  display: inline-flex;
+  justify-content: center;
+  column-gap: 100px;
+  padding: 10px;
+  /* border: 1px solid salmon; */
+}
+
+.product-detail .item {
+  width: 400px;
+}
+
+.product-detail .info {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.quantity {
+  width: 40px;  
+  font-size: 16px;
+  line-height: 20px;
+  height: 20px;
+  text-align: center;
+  appearance: none;
+}
+
+
+
+/* 공통 */
+.text-group {
+  display: flex;
+  padding: 10px 0;
+}
+
+img { width: 100%; }
+
+select {
+  width: 100%;
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #222;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #777;
+  background: none;
+  border-radius: 0;
+  padding-right: 32px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.gap-1 {
+  gap: 10px;
+}
+
+
+.btn {
+  background-color: royalblue;
+  color: white;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  margin: 0 2px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn.btn-lg {
+  width: 100%;
+  min-height: 40px;
+}
+
+.btn.btn-outline {
+  border: 2px solid gray;
+  background-color: white;
+  color: gray;
+}
