@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 설정 -->
+	<settings>
+		<!-- 언더스코어 케이스인 컬럼을 카멜 케이스로 변환하는 설정  -->
+		<!-- no - no -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- 타입 별칭 설정 -->
+	<typeAliases>
+		<!-- 테이블과 매핑할 DTO가 있는 패키지 경로 지정 -->
+		<package name="com.joeun.server.dto"/>
+	</typeAliases>	
+
+
+</configuration>
