@@ -1,18 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import * as boards from '../apis/boards'
+import BoardInsertForm from '../components/BoardInsertForm';
 
+//👩‍💻 게시글 등록
 const BoardInsertContainer = () => {
 
-  // const onInsert = async () => {
-  //   const result = await api.boardInsert(title, writer, content)
-  // }
+  const navigate = useNavigate()
 
-  return (
-    <div>
-        <h1>게시글 쓰기</h1>
-        <Link to="/boards">목록</Link>
-    </div>
-  )
+  const onInsert = async (title, writer, content) => {
+    try{
+      const response = await boards.insert(title, writer, content)
+
+      alert('등록 완료');
+      console.log(response.data);
+
+      // ➡ 게시글 목록 이동
+      navigate('/boards')
+    }
+    catch(e) {
+      console.log(e);
+    }
+  };
+
+  return <BoardInsertForm onInsert={onInsert} />
 }
 
 export default BoardInsertContainer

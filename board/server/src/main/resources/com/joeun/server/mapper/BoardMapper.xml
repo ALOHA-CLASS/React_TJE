@@ -8,25 +8,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <!-- 게시글 목록 -->
     <select id="list" resultType="Board">
-        SELECT *
+        SELECT * 
         FROM board
         ORDER BY reg_date DESC
     </select>
 
     <!-- 게시글 조회 -->
     <select id="select" resultType="Board">
-        SELECT *
+        SELECT * 
         FROM board
         WHERE no = #{no}
     </select>
 
     <!-- 게시글 등록 -->
-    <!--
-        useGeneratedKeys="true" : 자동으로 생성된 키를 사용
-        keyProperty             : 자동으로 생성된 키 값을 저장할 모델 클래스의 필드를 지정
-    -->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="no">
-        INSERT INTO board( title, writer, content)
+    <insert id="insert">
+        INSERT INTO board ( title, writer, content ) 
         VALUES ( #{title}, #{writer}, #{content} )
     </insert>
 
@@ -36,28 +32,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            SET title = #{title}
               ,writer = #{writer}
               ,content = #{content}
+              ,upd_date = now()
         WHERE no = #{no}
     </update>
 
     <!-- 게시글 삭제 -->
     <delete id="delete">
-        DELETE FROM board
+        DELETE FROM board 
         WHERE no = #{no}
     </delete>
 
-    <!-- 게시글 번호 최댓값 -->
-    <select id="maxPk" resultType="int">
-        SELECT MAX(no)
-        FROM board
-    </select>
-
     <!-- 조회수 업데이트 -->
     <update id="updateViews">
-        UPDATE board 
+        UPDATE board
            SET views = views + #{count}
         WHERE no = #{no}
     </update>
-
-
 
 </mapper>
