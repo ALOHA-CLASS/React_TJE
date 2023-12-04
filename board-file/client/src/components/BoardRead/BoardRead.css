@@ -1,0 +1,19 @@
+
+.file-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.file-box .item {
+    display: flex;
+    align-items: center;
+}
+
+.file-box img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    padding: 0 10px;
+}

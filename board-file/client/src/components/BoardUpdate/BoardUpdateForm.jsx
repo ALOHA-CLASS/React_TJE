@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as format from '../../apis/format'
 
-const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
+const BoardUpdateForm = ({ no, board, fileList, onUpdate, onDelete, isLoading, onDownload, onDeleteFile  }) => {
 
     // state 설정
     const [title, setTitle] = useState('')
@@ -30,6 +30,18 @@ const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
         if( check ) 
             onDelete(no)
     }
+
+    const handleDownload = (fileNo, fileName) => {
+        onDownload(fileNo, fileName)
+    }
+
+    const handleDeleteFile =(fileNo) => {
+
+        const check = window.confirm('정말로 삭제하시겠습니까?')
+        if( check )
+            onDeleteFile(fileNo)
+    }
+
 
     useEffect( () => {
         if( board ) {
@@ -90,6 +102,28 @@ const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
                                         onChange={handleChangeContent}></textarea>
                         </td>
 
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>파일</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            { fileList.length == 0 && ('업로드된 파일이 없습니다.') }
+                            { fileList.map( (file) => (
+                                <div className='file-box'>
+                                    <div className="item">
+                                        <img src={`/file/img/${file.no}`} alt={file.fileName} />
+                                        <span>{file.originName}</span>
+                                    </div>
+
+                                    <div className="item">
+                                        <button className="btn" onClick={() => handleDownload(file.no, file.originName)}>다운로드</button>
+                                        <button className="btn" onClick={() => handleDeleteFile(file.no)}>삭제</button>
+                                    </div>
+
+                                </div>
+                            ))}
+                        </td>
                     </tr>
                 </tbody>
             </table>

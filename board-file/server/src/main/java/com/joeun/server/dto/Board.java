@@ -1,6 +1,7 @@
 package com.joeun.server.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,6 @@ public class Board {
     private int views;
 
     // ✅ 파일
-    private MultipartFile[] files;
+    private List<MultipartFile> files;
 
 }

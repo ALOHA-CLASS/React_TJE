@@ -22,6 +22,8 @@ public interface BoardMapper {
     public int delete(int no) throws Exception;
     // 조회수 업데이트
     public int updateViews(@Param("count") int count, @Param("no") int no) throws Exception;
+    // 게시글 번호(기본키) 최댓값
+    public int maxPk() throws Exception;
 
 
 }

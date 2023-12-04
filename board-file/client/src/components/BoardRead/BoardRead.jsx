@@ -1,8 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import * as format from '../../apis/format'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import * as format from '../../apis/format';
+import './BoardRead.css';
 
-const BoardRead = ({ no, board, isLoading }) => {
+const BoardRead = ({ no, board, fileList, isLoading, onDownload }) => {
+
+
+    const handleDownload = (fileNo, fileName) => {
+        onDownload(fileNo, fileName)
+    }
 
     return (
         <div className='container'>
@@ -51,6 +57,26 @@ const BoardRead = ({ no, board, isLoading }) => {
                                         className='form-input'
                                         value={board.content} 
                                         readOnly></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>파일</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            { fileList.map( (file) => (
+                                <div className='file-box'>
+                                    <div className="item">
+                                        <img src={`/file/img/${file.no}`} alt={file.fileName} />
+                                        <span>{file.originName}</span>
+                                    </div>
+
+                                    <div className="item">
+                                        <button className="btn" onClick={() => handleDownload(file.no, file.originName)}>다운로드</button>
+                                    </div>
+
+                                </div>
+                            ))}
                         </td>
                     </tr>
                 </tbody>

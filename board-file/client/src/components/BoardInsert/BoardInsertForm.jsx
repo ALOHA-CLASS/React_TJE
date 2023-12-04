@@ -24,7 +24,7 @@ const BoardInsertForm = ({ onInsert }) => {
 
     // ✅ 파일 핸들러 추가
     const handleFileChange = (e) => {
-        setFiles(e.target.files[0]);
+        setFiles(e.target.files);
     };
 
     const onSubmit = () => {
@@ -47,7 +47,7 @@ const BoardInsertForm = ({ onInsert }) => {
             }
         }
 
-        onInsert({title,writer,content}, headers)
+        onInsert({title,writer,content,files}, headers)
         
     }
 
