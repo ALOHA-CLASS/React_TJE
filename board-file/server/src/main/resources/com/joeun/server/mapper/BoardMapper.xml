@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" --> 
+<mapper namespace="com.joeun.server.mapper.BoardMapper">
+
+    <!-- 게시글 목록 -->
+    <select id="list" resultType="Board">
+        SELECT * 
+        FROM board
+        ORDER BY reg_date DESC
+    </select>
+
+    <!-- 게시글 조회 -->
+    <select id="select" resultType="Board">
+        SELECT * 
+        FROM board
+        WHERE no = #{no}
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insert">
+        INSERT INTO board ( title, writer, content ) 
+        VALUES ( #{title}, #{writer}, #{content} )
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="update">
+        UPDATE board
+           SET title = #{title}
+              ,writer = #{writer}
+              ,content = #{content}
+              ,upd_date = now()
+        WHERE no = #{no}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="delete">
+        DELETE FROM board 
+        WHERE no = #{no}
+    </delete>
+
+    <!-- 조회수 업데이트 -->
+    <update id="updateViews">
+        UPDATE board
+           SET views = views + #{count}
+        WHERE no = #{no}
+    </update>
+
+</mapper>

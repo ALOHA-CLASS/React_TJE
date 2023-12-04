@@ -8,7 +8,7 @@ export const select = (no) => axios.get(`/boards/${no}`)
 
 // 등록
 // export const insert = (title, writer, content) => axios.post("/boards", {title, writer, content})
-export const insert = (board) => axios.post("/boards", board)
+export const insert = (board, headers) => axios.post("/boards", board, headers)
 
 // 수정
 export const update = (no, title, writer, content) => axios.put("/boards", {no, title, writer, content})
