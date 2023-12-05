@@ -1,0 +1,23 @@
+.btn {
+    background-color: royalblue;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    margin: 0 2px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#btn {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    margin: 0 2px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+}
