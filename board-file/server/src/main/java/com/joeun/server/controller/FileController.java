@@ -14,6 +14,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.joeun.server.dto.Files;
@@ -90,7 +92,7 @@ public class FileController {
 		// 파일이 존재하지 않으면,
 		if( file == null ) {
 			// 응답 상태코드 : 400, 클라이언트의 요청이 잘못되었음을 나타내는 상태코드
-			response.setStatus(response.SC_BAD_REQUEST);
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
 		
@@ -137,6 +139,19 @@ public class FileController {
         return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
     }
 
+
+	
+	@PostMapping("/upload")
+	public ResponseEntity<?> upload(Files file) {
+		try {
+			
+			int newFileNo = fileService.upload(file);
+
+			return new ResponseEntity<>(newFileNo, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 
     

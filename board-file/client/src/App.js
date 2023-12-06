@@ -7,6 +7,26 @@ import BoardUpdateContainer from './containers/BoardUpdateContainer';
 import Home from './pages/Home';
 
 function App() {
+
+  const files = [
+    {
+      id: 1,
+      url: 'https://picsum.photos/200',
+      fileName: 'image1.jpg',
+    },
+    {
+      id: 2,
+      url: 'https://picsum.photos/200',
+      fileName: 'image2.jpg',
+    },
+    {
+      id: 3,
+      url: 'https://picsum.photos/200',
+      fileName: 'image3.jpg',
+    },
+  ];
+  
+
   return (
     <BrowserRouter>
       <Routes>

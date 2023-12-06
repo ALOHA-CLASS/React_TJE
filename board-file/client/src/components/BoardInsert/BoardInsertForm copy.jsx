@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './BoardInsertForm.css'
-import * as filesApi from '../../apis/files';
-// ckeditor5
+// 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -59,36 +58,20 @@ const BoardInsertForm = ({ onInsert }) => {
     const customUploadAdapter = (loader) => {
         return {
           upload() {
-            return new Promise( (resolve, reject) => {
-              const formData = new FormData();
-              loader.file.then( async (file) => {
+            return new Promise((resolve, reject) => {
+              // const formData = new FormData();
+              loader.file.then((file) => {
                     console.log(file);
-                    formData.append("parentTable", 'editor');
-                    formData.append("file", file);
-
-                    const headers = {
-                        headers: {
-                            'Content-Type' : 'multipart/form-data',
-                        },
-                    };
+                    // formData.append("file", file);
     
-                    let response = await filesApi.upload(formData, headers);
-                    let data = await response.data;
-                    console.log(`data : ${data}`);
-                    
-                    let newFileNo = data;
-
-                    await resolve({
-                        default: `/file/img/${newFileNo}`
-                    })
-                    // axios
-                    //   .post("http://localhost:8080/api/v0/file/upload", formData)
-                    //   .then((res) => {
-                    //     resolve({
-                    //       default: res.data.data.uri,
-                    //     });
-                    //   })
-                    //   .catch((err) => reject(err));
+                // axios
+                //   .post("http://localhost:8080/api/v0/file/upload", formData)
+                //   .then((res) => {
+                //     resolve({
+                //       default: res.data.data.uri,
+                //     });
+                //   })
+                //   .catch((err) => reject(err));
               });
             });
           },
@@ -133,18 +116,6 @@ const BoardInsertForm = ({ onInsert }) => {
                                 editor={ ClassicEditor }
                                 config={{
                                     placeholder: "내용을 입력하세요.",
-                                    toolbar: {
-                                        items: [
-                                            'undo', 'redo',
-                                            '|', 'heading',
-                                            '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                                            '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                                            '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent',
-                                            '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                                            '|', 'mediaEmbed',
-                                        ],
-                                        shouldNotGroupWhenFull: false
-                                    },
                                     editorConfig: {
                                         height: 500, // Set the desired height in pixels
                                     },
@@ -162,7 +133,6 @@ const BoardInsertForm = ({ onInsert }) => {
                                 onChange={ ( event, editor ) => {
                                     const data = editor.getData();
                                     console.log( { event, editor, data } );
-                                    setContent(data);
                                 } }
                                 onBlur={ ( event, editor ) => {
                                     console.log( 'Blur.', editor );

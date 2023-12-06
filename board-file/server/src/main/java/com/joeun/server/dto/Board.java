@@ -21,4 +21,7 @@ public class Board {
     // ✅ 파일
     private List<MultipartFile> files;
 
+    // ❌ 삭제할 파일 번호 목록
+    private List<Integer> deleteFileNoList;
+
 }

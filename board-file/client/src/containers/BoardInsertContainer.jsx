@@ -9,9 +9,11 @@ const BoardInsertContainer = () => {
   const navigate = useNavigate()
 
   // const onInsert = async (title, writer, content) => {
-  const onInsert = async (board, headers) => {
+  // const onInsert = async (board, headers) => {
+  const onInsert = async (formData, headers) => {
     try{
-      const response = await boards.insert(board, headers)
+      // const response = await boards.insert(board, headers)
+      const response = await boards.insert(formData, headers)
 
       alert('등록 완료');
       console.log(response.data);

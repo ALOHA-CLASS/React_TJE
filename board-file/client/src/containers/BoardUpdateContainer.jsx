@@ -14,9 +14,14 @@ const BoardUpdateContainer = () => {
 
     const navigate = useNavigate()
 
-    const onUpdate = async (no, title, writer, content) => {
+    // const onUpdate = async (no, title, writer, content) => {
+    // const onUpdate = async (board, headers) => {
+    const onUpdate = async (formData, headers) => {
         try {
-            const response = await boards.update(no, title, writer, content)
+            // const response = await boards.update(no, title, writer, content);
+            // const response = await boards.update(board, headers);
+            const response = await boards.update(formData, headers);
+
             console.log(response.data);
             alert('수정 완료')
 

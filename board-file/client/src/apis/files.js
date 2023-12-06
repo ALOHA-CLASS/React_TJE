@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// 업로드
+export const upload = (formData, headers) => axios.post(`/file/upload`, formData, headers)
+
 // 다운로드
 export const download = (fileNo) => axios.get(`/file/${fileNo}`, {responseType: 'blob',} )
 

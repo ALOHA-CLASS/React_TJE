@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -88,7 +87,8 @@ public class BoardController {
     }
     
     @PostMapping()
-    public ResponseEntity<?> create(Board board) {
+    // public ResponseEntity<?> create(@RequestBody Board board) {   // Content-Type : application/json
+    public ResponseEntity<?> create(Board board) {                   // Content-Type : multipart/form-data
         log.info("[POST] - /boards - 게시글 등록");
 
         log.info("board : " + board.toString());
@@ -113,10 +113,12 @@ public class BoardController {
     }
     
     @PutMapping()
-    public ResponseEntity<?> update(@RequestBody Board board) {
+    // public ResponseEntity<?> update(@RequestBody Board board) {      // Content-Type : application/json
+    public ResponseEntity<?> update(Board board) {                      // Content-Type : multipart/form-data
         log.info("[PUT] - /boards - 게시글 수정");
         try {
             int result = boardService.update(board);
+            log.info("수정 : " + board);
             if( result > 0 )
                 return new ResponseEntity<>("게시글 수정 완료", HttpStatus.OK); 
             else

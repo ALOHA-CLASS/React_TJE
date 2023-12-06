@@ -16,3 +16,26 @@ export const formatDate = (isoDateString) => {
     return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
 
 };
+
+export const byteToUnit = (byte) => {
+    // 단위별 곱셈 계수를 정의합니다.
+    const unitMultipliers = {
+        "B": 1,
+        "KB": 1024,
+        "MB": 1048576,
+        "GB": 1073741824,
+        "TB": 1099511627776
+    };
+
+    // 가장 큰 단위를 찾습니다.
+    let unit = "";
+    for (const key in unitMultipliers) {
+        if (byte >= unitMultipliers[key]) {
+        unit = key;
+        }
+    }
+
+    // 입력된 바이트 수를 단위별로 변환합니다.
+    return parseFloat(byte / unitMultipliers[unit]).toFixed(2) + " " + unit;
+}
+  

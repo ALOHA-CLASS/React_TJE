@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE no = #{no}
     </update>
 
-     <!-- 게시글 번호 최댓값 -->
+    <!-- 게시글 번호 최댓값 -->
     <select id="maxPk" resultType="int">
         SELECT MAX(no)
         FROM board

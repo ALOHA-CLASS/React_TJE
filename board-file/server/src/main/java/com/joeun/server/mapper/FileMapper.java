@@ -19,6 +19,8 @@ public interface FileMapper {
     public int update(Files file) throws Exception;
     // 파일 삭제
     public int delete(int no) throws Exception;
+    // 파일 번호(기본키) 최댓값
+    public int maxPk() throws Exception;
     
 
     // 파일 목록 - 부모 기준
