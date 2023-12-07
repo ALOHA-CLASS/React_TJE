@@ -41,6 +41,7 @@ public class BoardController {
     public ResponseEntity<?> getAll() {
         log.info("[GET] - /boards - 게시글 목록");
         try {
+            log.info("[GET] - /boards - 게시글 목록");
             List<Board> boardList = boardService.list();
             if( boardList == null )
                 log.info("조회된 게시글 없음");
@@ -55,7 +56,7 @@ public class BoardController {
     }
     
     @GetMapping("/{no}")
-    public ResponseEntity<?> getOne(@PathVariable Integer no, Files files) {
+    public ResponseEntity<?> getOne(@PathVariable("no") Integer no, Files files) {
         log.info("[GET] - /boards/" + no  + " - 게시글 조회");
         try {
             Board board = boardService.select(no);

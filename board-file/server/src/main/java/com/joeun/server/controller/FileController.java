@@ -63,32 +63,35 @@ public class FileController {
 							,HttpServletResponse response) throws Exception {
 		
 		// 파일 조회
-		Files file = fileService.select(no);
-		
-		// 파일이 존재하지 않으면,
-		if( file == null ) {
-			// 응답 상태코드 : 400, 클라이언트의 요청이 잘못되었음을 나타내는 상태코드
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-		
-		String fileName = file.getFileName();	// 파일 명
-		String filePath = file.getFilePath();	// 파일 경로
-		
-		// 파일 다운로드를 위한 헤더 세팅
-		// - ContentType 			: application/octet-straem
-		// - Content-Disposition 	: attachment; fileanme="파일명.확장자"
-		response.setContentType("application/octet-stream");
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-		
-		
-		// 파일 입력
-		File downloadFile = new File(filePath);
-		FileInputStream fis = new FileInputStream(downloadFile);
-		ServletOutputStream sos = response.getOutputStream();
+		// Files file = fileService.select(no);
 
-		// 다운로드
-		FileCopyUtils.copy(fis, sos);
+		fileService.download(no, response);
+
+		
+		// // 파일이 존재하지 않으면,
+		// if( file == null ) {
+		// 	// 응답 상태코드 : 400, 클라이언트의 요청이 잘못되었음을 나타내는 상태코드
+		// 	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		// 	return;
+		// }
+		
+		// String fileName = file.getFileName();	// 파일 명
+		// String filePath = file.getFilePath();	// 파일 경로
+		
+		// // 파일 다운로드를 위한 헤더 세팅
+		// // - ContentType 			: application/octet-straem
+		// // - Content-Disposition 	: attachment; fileanme="파일명.확장자"
+		// response.setContentType("application/octet-stream");
+		// response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		
+		
+		// // 파일 입력
+		// File downloadFile = new File(filePath);
+		// FileInputStream fis = new FileInputStream(downloadFile);
+		// ServletOutputStream sos = response.getOutputStream();
+
+		// // 다운로드
+		// FileCopyUtils.copy(fis, sos);
 		
 	}
 

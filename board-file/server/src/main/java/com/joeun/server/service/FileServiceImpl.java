@@ -105,7 +105,7 @@ public class FileServiceImpl implements FileService {
 
         if( file == null ) {
             // BAD_REQUEST : 400, 클라이언트의 요청이 잘못되었음을 알려주는 상태코드
-            // response.setStatus(response.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return 0;
         }
 

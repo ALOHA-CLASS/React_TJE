@@ -43,9 +43,7 @@ public class BoardServiceImpl implements BoardService {
         int parentNo = boardMapper.maxPk();
         board.setNo(parentNo);
 
-        // ✅(New) 파일 업로드 
         result += uploadFiles(board);
-
         return result;
     }
 
@@ -92,7 +90,7 @@ public class BoardServiceImpl implements BoardService {
         int result = boardMapper.delete(no);
         String parentTable = "board";
         int parentNo = no;
-
+        log.info("${result}");
         if( result > 0 ) {
             Files fileInfo = new Files();
             fileInfo.setParentTable(parentTable);
