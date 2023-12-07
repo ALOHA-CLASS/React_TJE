@@ -9,7 +9,7 @@ const TodoContainer = () => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    fetch('http://192.168.30.119:8080/todos')
+    fetch('http://localhost:8080/todos')
       .then((response) => response.json())
       .then((data) => setTodoList(data))
       .catch((error) => console.log(error));
@@ -40,7 +40,7 @@ const TodoContainer = () => {
     };
 
     try {
-      const response = await fetch('http://192.168.30.119:8080/todos', init);
+      const response = await fetch('http://localhost:8080/todos', init);
       const newTodo = await response.json();
       const updatedList = [newTodo, ...todoList]
       setTodoList( updatedList );
@@ -63,7 +63,7 @@ const TodoContainer = () => {
     };
 
     try {
-      const response = await fetch(`http://192.168.30.119:8080/todos/${no}`, init);
+      const response = await fetch(`http://localhost:8080/todos/${no}`, init);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -91,7 +91,7 @@ const TodoContainer = () => {
     };
 
     try {
-      const response = await fetch('http://192.168.30.119:8080/todos', init);
+      const response = await fetch('http://localhost:8080/todos', init);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -125,7 +125,7 @@ const TodoContainer = () => {
     };
 
     try {
-      const response = await fetch('http://192.168.30.119:8080/todos', init);
+      const response = await fetch('http://localhost:8080/todos', init);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -157,7 +157,7 @@ const TodoContainer = () => {
     };
 
     try {
-      const response = await fetch(`http://192.168.30.119:8080/todos/-1`, init);
+      const response = await fetch(`http://localhost:8080/todos/-1`, init);
       console.log(response);
     } catch (error) {
       console.log(error);
