@@ -71,11 +71,7 @@ public class BoardController {
             if( board == null ) {
                 board = new Board();
                 board.setTitle("데이터 없음");
-                //     return new ResponseEntity<>(board, HttpStatus.OK); 
             }
-            // else {
-            //     return new ResponseEntity<>(board, HttpStatus.OK); 
-            // }
 
             return new ResponseEntity<>(response, HttpStatus.OK); 
 
@@ -97,7 +93,7 @@ public class BoardController {
         if( files != null )
             for (MultipartFile file : files) {
                 log.info("file : " +  file.getOriginalFilename());
-            }
+        }
 
         try {
             int result = boardService.insert(board);

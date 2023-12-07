@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.joeun.server.dto.Files;
@@ -37,44 +36,21 @@ public class FileController {
 	@Autowired
 	private ResourceLoader resourceLoader;
 
-    /**
-	 * 이미지 썸네일 
-	 * @param no
-	 * @param response
-	 * @throws Exception
+
+	/**
+	 * 파일 업로드
 	 */
-	@GetMapping("/img/{no}")
-	public void showImg(@PathVariable Integer no, HttpServletResponse response) throws Exception {
+	@PostMapping("/upload")
+	public ResponseEntity<?> upload(Files file) {
+		try {
+			
+			int newFileNo = fileService.upload(file);
 
-		Files file = fileService.select(no);
-		String filePath = (file != null) ? file.getFilePath() : null;
-		Resource resource = resourceLoader.getResource("classpath:static/img/no-image.png");
-
-		File imgFile;
-
-		if (filePath == null || !(imgFile = new File(filePath)).exists()) {
-			// 파일이 존재하지 않거나 파일 경로가 null인 경우
-			imgFile = resource.getFile();
+			return new ResponseEntity<>(newFileNo, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
-		String ext = filePath.substring(filePath.lastIndexOf(".") + 1);
-		MediaType mType = MediaUtil.getMediaType(ext);
-
-		if (mType == null) {
-			// 이미지 타입이 아닐 경우
-			response.setContentType(MediaType.IMAGE_PNG_VALUE); // 기본적으로 PNG로 설정
-			imgFile = resource.getFile();
-		} else {
-			// 이미지 타입일 경우
-			response.setContentType(mType.toString());
-		}
-
-		FileInputStream fis = new FileInputStream(imgFile);
-		ServletOutputStream sos = response.getOutputStream();
-		FileCopyUtils.copy(fis, sos);
 	}
-
-
 
 	/**
 	 * 파일 다운로드
@@ -116,7 +92,45 @@ public class FileController {
 		
 	}
 
+	/**
+	 * 이미지 썸네일 
+	 * @param no
+	 * @param response
+	 * @throws Exception
+	 */
+	@GetMapping("/img/{no}")
+	public void showImg(@PathVariable Integer no, HttpServletResponse response) throws Exception {
 
+		Files file = fileService.select(no);
+		String filePath = (file != null) ? file.getFilePath() : null;
+		Resource resource = resourceLoader.getResource("classpath:static/img/no-image.png");
+
+		File imgFile;
+
+		if (filePath == null || !(imgFile = new File(filePath)).exists()) {
+			// 파일이 존재하지 않거나 파일 경로가 null인 경우
+			imgFile = resource.getFile();
+		}
+
+		String ext = filePath.substring(filePath.lastIndexOf(".") + 1);
+		MediaType mType = MediaUtil.getMediaType(ext);
+
+		if (mType == null) {
+			// 이미지 타입이 아닐 경우
+			response.setContentType(MediaType.IMAGE_PNG_VALUE); // 기본적으로 PNG로 설정
+			imgFile = resource.getFile();
+		} else {
+			// 이미지 타입일 경우
+			response.setContentType(mType.toString());
+		}
+
+		FileInputStream fis = new FileInputStream(imgFile);
+		ServletOutputStream sos = response.getOutputStream();
+		FileCopyUtils.copy(fis, sos);
+	}
+	
+
+	
 	 /**
      *  파일 삭제
      * @param file
@@ -138,21 +152,6 @@ public class FileController {
         
         return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
     }
-
-
-	
-	@PostMapping("/upload")
-	public ResponseEntity<?> upload(Files file) {
-		try {
-			
-			int newFileNo = fileService.upload(file);
-
-			return new ResponseEntity<>(newFileNo, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
 
     
 }

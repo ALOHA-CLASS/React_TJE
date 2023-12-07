@@ -193,16 +193,11 @@ public class FileServiceImpl implements FileService {
         // c:/upload/UID_강아지.png
         String filePath = uploadPath + "/" + fileName;
 
-        // 파일업로드
         // - 서버 측, 파일 시스템에 파일 복사
-        // - DB 에 파일 정보 등록
         File uploadFile = new File(uploadPath, fileName);
         FileCopyUtils.copy(fileData, uploadFile);       // 파일 업로드
-
-        // FileOutputStream fos = new FileOutputStream(uploadFile);
-        // fos.write(fileData);
-        // fos.close();
-
+        
+        // - DB 에 파일 정보 등록
         Files uploadedFile = new Files();
         uploadedFile.setParentTable(fileInfo.getParentTable());
         uploadedFile.setParentNo(fileInfo.getParentNo());
@@ -212,9 +207,9 @@ public class FileServiceImpl implements FileService {
         uploadedFile.setFileSize(fileSize);
         uploadedFile.setFileCode(0);
 
-        fileMapper.insert(uploadedFile);
+        result = fileMapper.insert(uploadedFile);
 
-        return 1;
+        return result;
 
     }
 

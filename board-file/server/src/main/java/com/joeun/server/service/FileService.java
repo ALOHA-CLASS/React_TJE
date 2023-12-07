@@ -21,21 +21,23 @@ public interface FileService {
     // 파일 삭제
     public int delete(int no) throws Exception;
 
+    
+    // 파일 업로드
+    public int uploadFiles(Files file, List<MultipartFile> fileList) throws Exception;
+    // 파일 업로드
+    public int upload(Files file) throws Exception;
+    
+    
     // 파일 목록 - 부모 기준
     public List<Files> listByParent(Files file) throws Exception;
+
+    // 파일 다운로드
+    public int download(int no, HttpServletResponse response) throws Exception;
+
+    
     // 파일 삭제 - 부모 기준
     public int deleteByParent(Files fileInfo) throws Exception;
     // 파일 삭제 - noList 기준
     public int deleteByNoList(List<Integer> noList) throws Exception;
-    
-    
-    // 파일 다운로드
-    public int download(int no, HttpServletResponse response) throws Exception;
-
-    // 파일 업로드
-    public int uploadFiles(Files file, List<MultipartFile> fileList) throws Exception;
-
-    // 파일 업로드
-    public int upload(Files file) throws Exception;
     
 }

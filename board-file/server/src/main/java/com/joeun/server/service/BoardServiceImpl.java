@@ -40,11 +40,10 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     public int insert(Board board) throws Exception {
         int result = boardMapper.insert(board);         // 새로 생성된 데이터의 pk 가져옴
-        // String parentTable = "board";
         int parentNo = boardMapper.maxPk();
         board.setNo(parentNo);
 
-        // 파일 업로드 
+        // ✅(New) 파일 업로드 
         result += uploadFiles(board);
 
         return result;
@@ -57,7 +56,7 @@ public class BoardServiceImpl implements BoardService {
         // 파일 업로드 
         result += uploadFiles(board);
 
-        // 파일 삭제
+        // 개별 파일 삭제
         List<Integer> deleteFileNoList = board.getDeleteFileNoList();
         result += fileService.deleteByNoList(deleteFileNoList);
 
@@ -65,6 +64,30 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public int updateViews(int count, int no) throws Exception {
+        int result = boardMapper.updateViews(count, no);
+        return result;
+    }
+
+
+    public int uploadFiles(Board board) throws Exception {
+        String parentTable = "board";
+        int parentNo = board.getNo();
+        int result = 0;
+        
+        List<MultipartFile> fileList = board.getFiles();
+        if( fileList != null && !fileList.isEmpty() ) {
+            Files fileInfo = new Files();
+            fileInfo.setParentTable(parentTable);
+            fileInfo.setParentNo(parentNo);
+            result = fileService.uploadFiles(fileInfo, fileList);
+        }
+        return result;
+    }
+
+
+    @Override
+    @Transactional
     public int delete(int no) throws Exception {
         int result = boardMapper.delete(no);
         String parentTable = "board";
@@ -78,29 +101,6 @@ public class BoardServiceImpl implements BoardService {
             result = fileResult;
         }
 
-        return result;
-    }
-
-    @Override
-    public int updateViews(int count, int no) throws Exception {
-        int result = boardMapper.updateViews(count, no);
-        return result;
-    }
-
-
-    // 파일 업로드 
-    public int uploadFiles(Board board) throws Exception {
-        String parentTable = "board";
-        int parentNo = board.getNo();
-        int result = 0;
-        
-        List<MultipartFile> fileList = board.getFiles();
-        if( fileList != null && !fileList.isEmpty() ) {
-            Files fileInfo = new Files();
-            fileInfo.setParentTable(parentTable);
-            fileInfo.setParentNo(parentNo);
-            result = fileService.uploadFiles(fileInfo, fileList);
-        }
         return result;
     }
 
