@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as format from '../../apis/format'
+// import './BoardUpdateForm.css'
+import styles from './BoardUpdateForm.module.css'
 
 const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
 
@@ -53,30 +55,30 @@ const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
                 </div> 
             }
             { !isLoading && board && (
-            <table border={1} className='table'>
+            <table border={1} className={styles.table}>
                 <tbody>
                     <tr>
                         <td>번호</td>
                         <td>
-                            <input type="text" className='form-input' value={board.no} readOnly />
+                            <input type="text" className={styles['form-input']} value={board.no} readOnly />
                         </td>
                     </tr>
                     <tr>
                         <td>등록일자</td>
                         <td>
-                            <input type="text" className='form-input' value={ format.formatDate(board.regDate) } readOnly />
+                            <input type="text" className={styles['form-input']} value={ format.formatDate(board.regDate) } readOnly />
                         </td>
                     </tr>
                     <tr>
                         <td>제목</td>
                         <td>
-                            <input type="text" className='form-input' value={title} onChange={handleChangeTitle} />
+                            <input type="text" className={styles['form-input']} value={title} onChange={handleChangeTitle} />
                         </td>
                     </tr>
                     <tr>
                         <td>작성자</td>
                         <td>
-                            <input type="text" className='form-input' value={writer} onChange={handleChangeWriter} />
+                            <input type="text" className={styles['form-input']} value={writer} onChange={handleChangeWriter} />
                         </td>
                     </tr>
                     <tr>
@@ -85,7 +87,7 @@ const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
                     <tr>
                         <td colSpan={2}>
                             <textarea   cols="40" rows="10" 
-                                        className='form-input'
+                                        className={styles['form-input']}
                                         value={content} 
                                         onChange={handleChangeContent}></textarea>
                         </td>

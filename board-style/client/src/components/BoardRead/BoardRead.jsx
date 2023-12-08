@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import * as format from '../../apis/format'
+// import './BoardRead.css'
+import styles from './BoardRead.module.css'
 
 const BoardRead = ({ no, board, isLoading }) => {
 
@@ -16,30 +18,30 @@ const BoardRead = ({ no, board, isLoading }) => {
                 </div> 
             }
             { !isLoading && board && (
-            <table border={1} className='table'>
+            <table border={1} className={styles.table} >
                 <tbody>
                     <tr>
                         <td>번호</td>
                         <td>
-                            <input type="text" className='form-input' value={board.no} readOnly />
+                            <input type="text" className={styles['form-input']} value={board.no} readOnly />
                         </td>
                     </tr>
                     <tr>
                         <td>등록일자</td>
                         <td>
-                            <input type="text" className='form-input' value={format.formatDate( board.regDate )} readOnly />
+                            <input type="text" className={styles['form-input']} value={format.formatDate( board.regDate )} readOnly />
                         </td>
                     </tr>
                     <tr>
                         <td>제목</td>
                         <td>
-                            <input type="text" className='form-input' value={board.title} readOnly />
+                            <input type="text" className={styles['form-input']} value={board.title} readOnly />
                         </td>
                     </tr>
                     <tr>
                         <td>작성자</td>
                         <td>
-                            <input type="text" className='form-input' value={board.writer} readOnly />
+                            <input type="text" className={styles['form-input']} value={board.writer} readOnly />
                         </td>
                     </tr>
                     <tr>
@@ -48,7 +50,7 @@ const BoardRead = ({ no, board, isLoading }) => {
                     <tr>
                         <td colSpan={2}>
                             <textarea   cols="40" rows="10" 
-                                        className='form-input'
+                                        className={styles['form-input']}
                                         value={board.content} 
                                         readOnly></textarea>
                         </td>

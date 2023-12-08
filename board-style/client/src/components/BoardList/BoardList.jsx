@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './BoardList.css'
+// import './BoardList.css'
+import styles from './BoardList.module.css'
 import * as format from '../../apis/format'
 
 const BoardList = ({ boardList, isLoading }) => {
@@ -16,7 +17,7 @@ const BoardList = ({ boardList, isLoading }) => {
                 </div> 
             }
             { !isLoading && boardList && (
-            <table border={1} className='table list'>
+            <table border={1} className={`${styles.table} ${styles.list}`}>
                 <thead>
                     <tr>
                         <th>번호</th>

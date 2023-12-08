@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './BoardInsertForm.css'
+// import './BoardInsertForm.css'
+import styles from './BoardInsertForm.module.css'
 
 const BoardInsertForm = ({ onInsert }) => {
 
@@ -29,13 +30,19 @@ const BoardInsertForm = ({ onInsert }) => {
     return (
         <div className='container'>
             <h1 className='title'>게시글 등록</h1>
-            <table className='table'>
+            <table className={styles.table}>        {/* ✅ */}
                 <tbody>
                     <tr>
                         <td>제목</td>
                         <td>
+                            {/* 
+                                CSS module 의 클래스 선택자는 카멜케이스로 쓰는 것이 관례
+                                케밥케이스도 가능
+                              */}
+                            {/* 카멜케이스 : .formInput  ➡ { styles.formInput }  */}
+                            {/* 케밥케이스 : .form-input ➡ { styles['form-input']} */}
                             <input  type="text" 
-                                    className='form-input'
+                                    className={styles['form-input']}
                                     value={title} 
                                     onChange={handleChangeTitle} />
                         </td>
@@ -44,7 +51,7 @@ const BoardInsertForm = ({ onInsert }) => {
                         <td>작성자</td>
                         <td>
                             <input  type="text" 
-                                    className='form-input'
+                                    className={styles['form-input']}
                                     value={writer} 
                                     onChange={handleChangeWriter} />
                         </td>
@@ -55,7 +62,7 @@ const BoardInsertForm = ({ onInsert }) => {
                     <tr>
                         <td colSpan={2}>
                             <textarea   cols="40" rows="10"
-                                        className='form-input'
+                                        className={styles['form-input']}
                                         value={content}
                                         onChange={handleChangeContent}
                             ></textarea>
