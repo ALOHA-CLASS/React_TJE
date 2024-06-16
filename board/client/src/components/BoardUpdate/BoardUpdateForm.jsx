@@ -49,7 +49,7 @@ const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
 
             { isLoading && 
                 <div>
-                    <img src="/img/loading.webp" alt="loading" />
+                    <img src="/img/loading.webp" alt="loading" width="100%" />
                 </div> 
             }
             { !isLoading && board && (

@@ -29,7 +29,7 @@ const BoardRead = ({ no, board, fileList, isLoading, onDownload }) => {
 
             { isLoading && 
                 <div>
-                    <img src="/img/loading.webp" alt="loading" />
+                    <img src="/img/loading.webp" alt="loading" width="100%" />
                 </div> 
             }
             { !isLoading && board && (

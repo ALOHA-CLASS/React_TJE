@@ -115,7 +115,7 @@ const BoardUpdateForm = ({ no, board, fileList, onUpdate, onDelete, isLoading, o
                     let newFileNo = data;
 
                     await resolve({
-                        default: `/file/img/${newFileNo}`
+                        default: `http://localhost:8080/file/img/${newFileNo}`
                     })
                     // axios
                     //   .post("http://localhost:8080/api/v0/file/upload", formData)
@@ -145,7 +145,7 @@ const BoardUpdateForm = ({ no, board, fileList, onUpdate, onDelete, isLoading, o
 
             { isLoading && 
                 <div>
-                    <img src="/img/loading.webp" alt="loading" />
+                    <img src="/img/loading.webp" alt="loading" width="100%" />
                 </div> 
             }
             { !isLoading && board && (

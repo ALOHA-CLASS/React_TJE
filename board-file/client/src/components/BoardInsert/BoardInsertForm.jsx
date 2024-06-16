@@ -79,7 +79,7 @@ const BoardInsertForm = ({ onInsert }) => {
                     let newFileNo = data;
 
                     await resolve({
-                        default: `/file/img/${newFileNo}`
+                        default: `http://localhost:8080/file/img/${newFileNo}`
                     })
                     // axios
                     //   .post("http://localhost:8080/api/v0/file/upload", formData)

@@ -102,7 +102,7 @@ public class FileController {
 	 * @throws Exception
 	 */
 	@GetMapping("/img/{no}")
-	public void showImg(@PathVariable Integer no, HttpServletResponse response) throws Exception {
+	public void showImg(@PathVariable("no") Integer no, HttpServletResponse response) throws Exception {
 
 		Files file = fileService.select(no);
 		String filePath = (file != null) ? file.getFilePath() : null;
