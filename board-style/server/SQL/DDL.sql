@@ -1,3 +1,4 @@
+-- Active: 1717023153983@@127.0.0.1@3306@joeun
 -- 스키마 생성
 CREATE DATABASE `joeun` 
 
