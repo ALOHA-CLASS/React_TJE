@@ -1,4 +1,4 @@
--- Active: 1717023153983@@127.0.0.1@3306@joeun
+-- Active: 1718010922444@@127.0.0.1@3306@aloha
 -- 테이블이 이미 존재하는 경우 삭제
 DROP TABLE IF EXISTS `file`;
 

@@ -101,7 +101,7 @@ const BoardUpdateForm = ({ no, board, onUpdate, onDelete, isLoading }) => {
                 </div>
                 <div className="item">
                     <button className='btn' onClick={ handleDelete }>삭제</button>
-                    <button className='btn' tton onClick={ onSubmit }>수정</button>
+                    <button className='btn' onClick={ onSubmit }>수정</button>
                 </div>
             </div>
         </div>
